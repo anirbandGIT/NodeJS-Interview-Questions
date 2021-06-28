@@ -58,7 +58,11 @@ async function getArticleTitles(author) {
         const titlesArr = [];
 
         articleData.forEach((elem) => {
-          titlesArr.push(elem.title);
+          if (elem.title !== null) {
+            titlesArr.push(elem.title);
+          } else if (elem.story_title !== null) {
+            titlesArr.push(elem.story_title);
+          }
         });
 
         for (let i = 2; i <= totalPages; i++) {
@@ -70,7 +74,11 @@ async function getArticleTitles(author) {
               const newParsedData = JSON.parse(newData);
               const newArticleData = newParsedData.data;
               newArticleData.forEach((elem) => {
-                titlesArr.push(elem.title);
+                if (elem.title !== null) {
+                  titlesArr.push(elem.title);
+                } else if (elem.story_title !== null) {
+                  titlesArr.push(elem.story_title);
+                }
               });
             });
           });
